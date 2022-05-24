@@ -49,7 +49,10 @@
                     <label class="form-label">email:</label>
                     <input class="form-control" type="text" name="email"/>
                 </div>
-
+                
+                {% if pwd  %}
+                    <p id = "pwd">{{pwd}}</p>
+                {%endif%}
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
@@ -58,8 +61,9 @@
                 </ul>
                 {% endif %}
                 <!-- <button style="width:100%" class="btn btn-primary btn-block mb-4 mt-3">submit</button> -->
-                <button onclick="searchUser()" style="width:100%" class="btn btn-warning btn-block mb-4 mt-3">submit</button>
+
             </form>
+            <button onclick="searchUser()" style="width:100%" class="btn btn-warning btn-block mb-4 mt-3">submit</button>
         </div>
     </div>
     <div class="container mt-5">
@@ -78,8 +82,9 @@
 </div>
 <script>
     let baseUrl = 'http://thangvc91.ydns.eu:8082'
+    // let baseUrl = 'http://127.0.0.1:8000'
     let userList = [];
-    let password = document.getElementById("password")
+    let password = document.getElementById("pwd")
     function renderRow(user){
         return(
             `<tr>
@@ -95,6 +100,7 @@
     async function searchUser(){
         // let url = baseUrl + '/api/searchclienturl?password=' + (password ?? 'BaoViet') //ham lay gia tri mac dinh cua JS
         // let url = baseUrl + '/api/searchclienturl?password=BaoViet' //ham lay gia tri mac dinh cua JS
+        
         let url = baseUrl + '/api/searchclienturl?password=' + password
         let resp = await fetch(url);
         userList = await resp.json();

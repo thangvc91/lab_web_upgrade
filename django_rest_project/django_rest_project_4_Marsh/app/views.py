@@ -2,14 +2,34 @@ from multiprocessing.connection import Client
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render, HttpResponse
+from django.template import loader
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 import json
-@api_view(['GET', 'POST'])
+# @api_view(['GET', 'POST'])
 def hello(request):    
    return Response({"message" : "Hello world!"})
 
+@csrf_exempt
+def search_client_url(request):
+    params = request.GET 
+    password = params.get('password')
+    clienturl = ClientUrl.objects.filter(
+        clientpass=password
+    )
+    print("hello")
+    result = []
+    for u in clienturl:
+        result.append({
+            'client_name':u.clientname,
+            'description':u.description,
+            'client_url':u.clienturl,
+        })
+    return HttpResponse(json.dumps(result)) 
+@csrf_exempt
+def get_client_url(request):
+    return render(request,'getclienturl.html')
 # @api_view(['POST'])
 @csrf_exempt
 def reg(request):
@@ -30,8 +50,15 @@ def reg(request):
                 post.phone= request.POST.get('phone')
                 post.name= request.POST.get('name')
                 post.email= request.POST.get('email')
-                post.save()                
-                return render(request, 'getclienturl.html') 
+                post.save()             
+                # return render(request,'posts/reg.html')
+                # return HttpResponse(request)   
+                # return render(request, 'getclienturl.html', ) 
+                # template =loader.get_template('getclienturl.html')
+                context = {
+                    'password':pwd
+                }
+                return render(request, 'getclienturl.html',context)
         else:
             print(request.POST.get('password'))
             # messages.add_message(request, messages.INFO, 'Wrong Password')
@@ -39,25 +66,25 @@ def reg(request):
             return render(request,'posts/reg.html')
     else:
             return render(request,'posts/reg.html')
-@csrf_exempt
-def search_client_url(request):
-    params = request.GET 
-    password = params.get('password')
-    clienturl = ClientUrl.objects.filter(
-        clientpass=password
-    )
-    print("hello")
-    result = []
-    for u in clienturl:
-        result.append({
-            'client_name':u.clientname,
-            'description':u.description,
-            'client_url':u.clienturl,
-        })
-    return HttpResponse(json.dumps(result)) 
-@csrf_exempt
-def get_client_url(request):
-    return render(request,'getclienturl.html')
+# @csrf_exempt
+# def search_client_url(request):
+#     params = request.GET 
+#     password = params.get('password')
+#     clienturl = ClientUrl.objects.filter(
+#         clientpass=password
+#     )
+#     print("hello")
+#     result = []
+#     for u in clienturl:
+#         result.append({
+#             'client_name':u.clientname,
+#             'description':u.description,
+#             'client_url':u.clienturl,
+#         })
+#     return HttpResponse(json.dumps(result)) 
+# @csrf_exempt
+# def get_client_url(request):
+#     return render(request,'getclienturl.html')
 
 @csrf_exempt
 def search_user(request):
