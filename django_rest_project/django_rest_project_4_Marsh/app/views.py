@@ -37,7 +37,9 @@ def reg(request):
         pwd = request.POST.get('password') 
         # pwds = ClientUrl.objects.filter(clientname = pwd)
         pwds = ClientUrl.objects.filter(clientpass = pwd)
-        print(pwds)
+        if not pwds:
+            return HttpResponse({'password error': 'Thiếu sản phẩm trong danh mục hàng'}, status=500)
+            # print(pwds)
         # if pwd == pwds.clientname:
         #     print(pwd)
         #     print("YES")
@@ -45,7 +47,8 @@ def reg(request):
         #     print(request.POST.get('password'))
         #     # messages.add_message(request, messages.INFO, 'success')
         #     messages.info(request, 'success')
-        if request.POST.get('phone') and request.POST.get('name') and request.POST.get('email'):
+        else:
+            if request.POST.get('phone') and request.POST.get('name') and request.POST.get('email'):
                 post=Register1()
                 post.phone= request.POST.get('phone')
                 post.name= request.POST.get('name')
@@ -59,11 +62,11 @@ def reg(request):
                     'password':pwd
                 }
                 return render(request, 'getclienturl.html',context)
-        else:
-            print(request.POST.get('password'))
+            else:
+                print(request.POST.get('password'))
             # messages.add_message(request, messages.INFO, 'Wrong Password')
-            messages.info(request, 'Wrong Password')
-            return render(request,'posts/reg.html')
+                messages.info(request, 'Wrong Password')
+                return render(request,'posts/reg.html')
     else:
             return render(request,'posts/reg.html')
 # @csrf_exempt
