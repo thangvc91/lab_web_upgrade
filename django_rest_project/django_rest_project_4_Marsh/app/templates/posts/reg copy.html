@@ -11,13 +11,12 @@
             <style>
                 .form {
                     margin: auto;
-                    margin-top: 80px;
+                    margin-top: 50px;
                     width: 200px;
                     padding: 20px;
                     border: 1px solid #DDD;
                     border-radius: 5px;
-                    background-color: rgb(124, 111, 182);
-                    
+                    background-color: darkgray;
                 }
                 .form-label{
                     /* background-color: blue; */
@@ -27,38 +26,17 @@
                 body{
                     background-image: url('{% static "bg.png"%}');
                 }
-                .container{
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .logo{
-                    /* max-width: 100%;
-                    max-height: 100%; */
-                    /* display: block; remove extra space below image */
-                    margin-top: 40px;
-                    width: 150px;
-                    height: 150px;
-                }
-                
             </style>
     </head>
-<!-- <body> -->   
+<body>
 <div class="container">
-    <div class="row" style="width: 100% ;">
-        <div class="col-md-4 col-6 d-flex justify-content-md-start justify-content-center">
-            <div class="logo">
-            <img  src="{% static "logo.png" %}" alt="something" >
-            </div>
-          </div>
-          <div class="col-md-4 col-6 d-flex justify-content">
+    <div class="row" style="width: 80% ;">
         <!-- <div class="col bg-info"> -->
             <form action="" method="post">
                 {% csrf_token %}
-            <div class="form" style="width: 100%;">
+            <div class="form" style="width: 50%;">
         
-                <h3 class="mt-3" style="color: white;">Please input the info</h3>
+                <h3 class="mt-3">Please input the info</h3>
         
                 <div class="form-group mb-2">
                     <label class="form-label" >password:</label>
@@ -92,10 +70,9 @@
             </form>
             <button onclick="searchUser()" style="width:100%" class="btn btn-warning btn-block mb-4 mt-3">submit</button>
         </div>
-        <!-- <div class="col-md-4 col-12 d-flex justify-content-md-end justify-content-center">
-            3 of 3
-        </div>        -->
-<!-- </body> -->
+    </div>
+</div>
+</body>
 <script>
     let baseUrl = 'http://thangvc91.ydns.eu:8082'
     // let baseUrl = 'http://127.0.0.1:8000'
