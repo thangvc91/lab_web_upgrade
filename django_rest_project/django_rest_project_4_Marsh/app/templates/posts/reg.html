@@ -33,7 +33,6 @@
                     justify-content: center;
                     align-items: center;
                 }
-<<<<<<< HEAD
                 .logo{
                     /* max-width: 100%;
                     max-height: 100%; */
@@ -42,51 +41,39 @@
                     width: 150px;
                     height: 150px;
                 }
-                
-=======
->>>>>>> b16b7664ae849db22deef43ff1af07b7c8115590
+
             </style>
     </head>
 <!-- <body> -->   
-<div class="container">
-<<<<<<< HEAD
-    <div class="row" style="width: 100% ;">
-        <div class="col-md-4 col-6 d-flex justify-content-md-start justify-content-center">
-            <div class="logo">
-            <img  src="{% static "logo.png" %}" alt="something" >
-            </div>
-          </div>
-          <div class="col-md-4 col-6 d-flex justify-content">
-        <!-- <div class="col bg-info"> -->
+<div class=".container-sm"></div>
+    <div class="row">
+        <!-- <div class="col-md-5"> -->
+        <div class="col-md-5-justify-content-center">
+            <h1>aaaaaaaaaaa</h1>
+        </div>        
+        <!-- <div class="col-md-7">    -->
+        <div class="col-md-7">
             <form action="" method="post">
                 {% csrf_token %}
-            <div class="form" style="width: 100%;">
-=======
-    <div class="row" style="width: 80% ;">
-        <!-- <div class="col bg-info"> -->
-            <form action="" method="post">
-                {% csrf_token %}
-            <div class="form" style="width: 50%;">
->>>>>>> b16b7664ae849db22deef43ff1af07b7c8115590
-        
+            <div class="form" style="width: 50%;">        
                 <h3 class="mt-3" style="color: white;">Please input the info</h3>
-        
-                <div class="form-group mb-2">
-                    <label class="form-label" >password:</label>
-                    <input class="form-control" type="password" name = "password"/>
-                </div>
-                <div class="form-group mb-2 mt-2">
-                    <label class="form-label">phone:</label>
-                    <input class="form-control" type="text" name="phone"/>
-                </div>
-                <div class="form-group mb-2 mt-2">
-                    <label class="form-label">name:</label>
-                    <input class="form-control" type="text" name="name"/>
-                </div>
-                <div class="form-group mb-2 mt-2">
-                    <label class="form-label">email:</label>
-                    <input class="form-control" type="text" name="email"/>
-                </div>
+            </div>
+            <div class="form-group mb-2">
+                <label class="form-label" >password:</label>
+                <input class="form-control" type="password" name = "password"/>
+            </div>
+            <div class="form-group mb-2 mt-2">
+                <label class="form-label">phone:</label>
+                <input class="form-control" type="text" name="phone"/>
+            </div>
+            <div class="form-group mb-2 mt-2">
+                <label class="form-label">name:</label>
+                <input class="form-control" type="text" name="name"/>
+            </div>
+            <div class="form-group mb-2 mt-2">
+                <label class="form-label">email:</label>
+                <input class="form-control" type="text" name="email"/>
+            </div>
                 
                 {% if pwd  %}
                     <p id = "pwd">{{pwd}}</p>
@@ -103,15 +90,10 @@
             </form>
             <button onclick="searchUser()" style="width:100%" class="btn btn-warning btn-block mb-4 mt-3">submit</button>
         </div>
-<<<<<<< HEAD
-        <!-- <div class="col-md-4 col-12 d-flex justify-content-md-end justify-content-center">
-            3 of 3
-        </div>        -->
-=======
+
     </div>
 </div>
 
->>>>>>> b16b7664ae849db22deef43ff1af07b7c8115590
 <!-- </body> -->
 <script>
     let baseUrl = 'http://thangvc91.ydns.eu:8082'
