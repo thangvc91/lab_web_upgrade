@@ -20,10 +20,10 @@
         background-color: rgb(85, 141, 179);
     }
     img{
-        margin-top: 80px;
-        width: 75%;
-        height: 50%;
-        opacity: 0.7;
+        margin-top: 97px;
+        width: 60%;
+        height: 40%;
+        opacity: 0.8;
     }
     .form-label{
         /* background-color: blue; */
@@ -43,11 +43,12 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-12 d-flex justify-content-md-start justify-content-center">
-        <img src="{% static "images/hinh1.jpg"%}" alt="">
-
+      <!-- <div class="col-md-4 col-12 d-flex justify-content-md-start justify-content-center"> -->
+      <div class="col-md-4 col-12">
+        <!-- <img src="{% static "images/ht.jpg"%}" alt=""> -->
+        <img src="{% static "images/hinh3.jpg"%}" alt="">  
       </div>
-      <div class="col-md-4 col-12 d-flex justify-content-center">
+      <div class="col-md-6 col-12 d-flex justify-content-center">
 
         <form action="" method="post">
           {% csrf_token %}
