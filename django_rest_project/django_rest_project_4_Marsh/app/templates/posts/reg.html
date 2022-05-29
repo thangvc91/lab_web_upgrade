@@ -28,27 +28,37 @@
     <style>
             img{
         margin-top: 0px;
-        width: 30%;
-        height: 18%;
+        width: 20%;
+        height: 15%;
         opacity: 0.8;
+        margin-bottom: 30px;
+    }
+    .center{
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
     }
     </style>
 </head>
 
 <body>
+
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <!-- <img src="{% static "images/mmc-logo.svg" %}" alt="">  -->
-
+        <div class="row row-space">
+            <img src="{% static "images/mmc-logo.svg" %}" alt="" class="center">
+        </div>
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <div class="row row-space">
-                        <img src="{% static "images/mmc-logo.svg" %}" alt="">
-                    </div>
                     <h2 class="title">Registration Info</h2>
                      
                     <form method="POST">
+                        <div class="input-group">
+                            <input class="input--style-1" type="password" placeholder="password" name="password">
+                        </div>
                         <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="phone" name="phone">
                         </div>
