@@ -125,3 +125,33 @@
 
 </html>
 <!-- end document-->
+<script>
+    let baseUrl = 'http://thangvc91.ydns.eu:8082'
+    // let baseUrl = 'http://127.0.0.1:8000'
+    let userList = [];
+    let password = document.getElementById("pwd")
+    function renderRow(user){
+        return(
+            `<tr>
+                <td scope="row">${user.client_name}</td>
+                <td>${user.description}</td>
+                <td>${user.client_url}</td>
+            </tr>`         
+        )
+    }
+
+
+
+    async function searchUser(){
+        // let url = baseUrl + '/api/searchclienturl?password=' + (password ?? 'BaoViet') //ham lay gia tri mac dinh cua JS
+        // let url = baseUrl + '/api/searchclienturl?password=BaoViet' //ham lay gia tri mac dinh cua JS
+        
+        let url = baseUrl + '/api/searchclienturl?password=' + password
+        let resp = await fetch(url);
+        userList = await resp.json();
+        console.log(userList);
+        let html = userList.map(renderRow).join("");
+        console.log(html);
+        document.getElementById("user_list").innerHTML=html;
+    }
+</script>
