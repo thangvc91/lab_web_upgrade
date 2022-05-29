@@ -12,11 +12,6 @@
                 td{
                     width: 25%;
                 }
-                .clientname{
-                    color: red;
-                    font-style: italic;
-                    font-size: large;
-                }
             </style>
     </head>
     <body>
@@ -24,7 +19,7 @@
         <button onclick="searchUser()"> submit </button> -->
         <div class="container mt-5">
             <div class="clientname">
-                <h3 id = "client_name" ></h3>
+                <h3 id = "client_name"></h3>
             </div>
             <table class="table">
                 <thead>
@@ -42,8 +37,8 @@
     </body>
 </html>
 <script>
-    // let baseUrl = 'http://thangvc91.ydns.eu:8082';
-    let baseUrl = 'http://127.0.0.1:8000';
+    let baseUrl = 'http://thangvc91.ydns.eu:8082';
+    // let baseUrl = 'http://127.0.0.1:8000';
     let userList = [];
     // let password = document.getElementById("pwd").value;
     // console.log(password);
@@ -62,18 +57,15 @@
     async function searchUser(){
         // let pwd = document.getElementById("pwd").value;
         var pwd = "{{password}}";
-        var clientname = "{{clientname}}";
         //let url = baseUrl + '/api/searchclienturl?password=' + (keyword ?? 'BaoViet') //ham lay gia tri mac dinh cua JS
         let url = baseUrl + '/api/searchclienturl?password=' + pwd;//ham lay gia tri mac dinh cua JS
+
         let resp = await fetch(url);
         userList = await resp.json();
         console.log(userList);
         let html = userList.map(renderRow).join("");
         console.log(html);
-        // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
-        console.log(pwd)
         document.getElementById("user_list").innerHTML=html;
-        document.getElementById("client_name").innerHTML = ' Welcome to ' + clientname;
     }
     searchUser()
 </script>

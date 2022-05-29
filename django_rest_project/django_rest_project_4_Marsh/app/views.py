@@ -1,3 +1,4 @@
+from http import client
 from multiprocessing.connection import Client
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -37,6 +38,9 @@ def reg(request):
         pwd = request.POST.get('password') 
         # pwds = ClientUrl.objects.filter(clientname = pwd)
         pwds = ClientUrl.objects.filter(clientpass = pwd)
+        clientname = pwds.first()
+        print(pwds)
+        print(f'ket qua dau tien {clientname}')
         if not pwds:
             return HttpResponse({'password error': 'Thiếu sản phẩm trong danh mục hàng'}, status=500)
             # print(pwds)
@@ -59,7 +63,8 @@ def reg(request):
                 # return render(request, 'getclienturl.html', ) 
                 # template =loader.get_template('getclienturl.html')
                 context = {
-                    'password':pwd
+                    'password':pwd,
+                    'clientname':clientname
                 }
                 return render(request, 'getclienturl.html',context)
             else:
