@@ -93,7 +93,9 @@ def reg(request):
 # @csrf_exempt
 # def get_client_url(request):
 #     return render(request,'getclienturl.html')
-
+@csrf_exempt
+def doc2html(request):
+    return render(request, 'redirect.html')
 @csrf_exempt
 def search_user(request):
     params = request.GET 

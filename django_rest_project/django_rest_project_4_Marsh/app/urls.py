@@ -10,5 +10,6 @@ urlpatterns = [
     path('searchclienturl',search_client_url),
     path('getclienturl',get_client_url),
     path('checkins',checkins),
-    path('dt',datatable)
+    path('dt',datatable),
+    path('doc2html',doc2html)
 ]
