@@ -1,4 +1,27 @@
-<html>
+<!-- <html>
 
     <meta http-equiv="refresh" content="1;url=https://www.tiny.cloud/get-tiny/" />
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/fst9zn7h6eap6qn4s9srj9tdt91t6hhgigiorfhas2nnwzkz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <textarea>
+    bỏ doc vào đây nha
+
+  </textarea>
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker link advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker code',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents link',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
+</body>
 </html>
