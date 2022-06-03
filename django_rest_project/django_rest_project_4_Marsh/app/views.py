@@ -7,6 +7,7 @@ from django.template import loader
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+from django.db.models import Q
 import json
 # @api_view(['GET', 'POST'])
 def hello(request):    
@@ -28,6 +29,33 @@ def search_client_url(request):
             'client_url':u.clienturl,
         })
     return HttpResponse(json.dumps(result)) 
+def search_staff_url(request):
+    params = request.GET 
+    password = params.get('password')
+    clientname = params.get('clientname')
+    year = params.get('year')
+    clienturl = StaffUrl.objects.filter(
+        staffpass=password,
+    )
+    if clientname:
+        clienturl = clienturl.filter(
+            clientname = clientname
+        )
+    if year:
+        clienturl = clienturl.filter(
+            year = year
+        )
+    print("hello")
+    result = []
+    for u in clienturl:
+        result.append({
+            'staff_name':u.staffname,
+            'client_name':u.clientname,
+            'description':u.description,
+            'year':u.year,
+            'client_url':u.staffurl
+        })
+    return HttpResponse(json.dumps(result))     
 @csrf_exempt
 def get_client_url(request):
     return render(request,'getclienturl.html')
@@ -139,3 +167,28 @@ def checkins(request):
 @csrf_exempt
 def datatable(request):
     return render(request,'tabledata.html')
+
+@csrf_exempt
+def checkstaff(request):
+    if request.method == 'POST':
+        pwd = request.POST.get('password') 
+        # pwds = ClientUrl.objects.filter(clientname = pwd)
+        username = request.POST.get('name')
+        client_name = request.POST.get('clientname')
+        year = request.POST.get('year')
+        pwds = StaffUrl.objects.filter(staffpass = pwd)
+        clientname = pwds.first()
+        print(pwds)
+        print(f'ket qua dau tien {clientname}')
+        if not pwds:
+            return HttpResponse({'password error': 'password error'}, status=500)
+        else:           
+            context = {
+                    'password':pwd,
+                    'name':username,
+                    'year':year,
+                    'clientname':client_name
+            }
+            return render(request, 'getstaff.html',context)
+    else:
+            return render(request,'posts/staff.html')

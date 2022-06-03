@@ -16,3 +16,11 @@ class ClientUrl(models.Model):
     description = models.CharField(max_length=100,null=False)
     clienturl =models.CharField(max_length=500,null=False)
     def __str__(self): return self.clientname
+class StaffUrl(models.Model):
+    staffpass = models.CharField(max_length=20, null=False)
+    staffname = models.CharField(max_length=50, null=False)
+    description = models.CharField(max_length=200,null=False)
+    clientname = models.CharField(max_length=200,null=True)
+    staffurl =models.CharField(max_length=500,null=False)
+    year =models.IntegerField(null=True)
+    def __str__(self): return self.staffname
