@@ -185,7 +185,7 @@ def checkstaff(request):
         else:           
             context = {
                     'password':pwd,
-                    'name':username,
+                    'name':clientname,
                     'year':year,
                     'clientname':client_name
             }

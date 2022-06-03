@@ -74,6 +74,7 @@
         // let pwd = document.getElementById("pwd").value;
         var pwd = "{{password}}";
         var year = "{{year}}";
+        var user = "{{name}}"
         var clientname = "{{clientname}}";
         //let url = baseUrl + '/api/searchclienturl?password=' + (keyword ?? 'BaoViet') //ham lay gia tri mac dinh cua JS
         let url = baseUrl + '/api/searchstaff?password=' + pwd + "&year=" + year + "&clientname=" + clientname ;//ham lay gia tri mac dinh cua JS
@@ -85,8 +86,8 @@
         // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
         console.log(pwd)
         document.getElementById("user_list").innerHTML=html;
-        document.getElementById("client_name").innerHTML = ' Welcome Back ' + clientname;
-        document.getElementById("title1").innerHTML = clientname + ' sdocuments';
+        document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
+        document.getElementById("title1").innerHTML = user + ' sdocuments';
     }
     searchUser()
 </script>
