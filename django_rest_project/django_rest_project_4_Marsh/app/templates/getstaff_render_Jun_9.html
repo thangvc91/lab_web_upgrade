@@ -35,28 +35,14 @@
                 <table id="table_id" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <!-- <th>Name</th>
+                            <th>Name</th>
                             <th>Client Name</th>
                             <th>Year</th>
                             <th>Description</th>
-                            <th>Link Download</th> -->
-                            <th>staff_name</th>
-                            <th>client_name</th>
-                            <th>description</th>
-                            <th>year</th>
-                            <th>client_url</th>
+                            <th>Link Download</th>
                         </tr>
-                        <tfoot>
-                            <tr>
-                                <th>staff_name</th>
-                                <th>client_name</th>
-                                <th>description</th>
-                                <th>year</th>
-                                <th>client_url</th>
-                            </tr>
-                        </tfoot>
                     </thead>
-                    <!-- <tbody id="user_list">
+                    <tbody id="user_list">
                     </tbody>
                     <tfoot>
                     <tr>
@@ -66,7 +52,7 @@
                         <th>Description</th>
                         <th>Link Download</th>
                     </tr>
-                    </tfoot> -->
+                    </tfoot>
                 </table>
             </div>
             <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -80,8 +66,8 @@
 </html>
 <a href=""></a>
 <script>
-    // let baseUrl = 'http://thangvc91.ydns.eu:8082';
-    let baseUrl = 'http://127.0.0.1:8000';
+    let baseUrl = 'http://thangvc91.ydns.eu:8082';
+    // let baseUrl = 'http://127.0.0.1:8000';
     let userList = [];
     // let password = document.getElementById("pwd").value;
     // console.log(password);
@@ -116,32 +102,16 @@
         let resp = await fetch(url);
         userList = await resp.json();
         console.log(userList);
-        // let html = userList.map(renderRow).join("");
-        // console.log(html);
-        // // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
-        // console.log(pwd)
-        // document.getElementById("user_list").innerHTML=html;
+        let html = userList.map(renderRow).join("");
+        console.log(html);
+        // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
+        console.log(pwd)
+        document.getElementById("user_list").innerHTML=html;
 
-        // document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
-        // document.getElementById("title1").innerHTML = user + ' sdocuments';
-        // return userList
-        $('#table_id').DataTable({
-    // data: userList,
-    data : userList,
-    columns: [
-        { data: 'staff_name' },
-        { data: 'client_name' },
-        { data: 'description' },
-        { data: 'year' },
-        { data: 'client_url' }
-    ],
-
-    "pageLength": 10
-});
-
+        document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
+        document.getElementById("title1").innerHTML = user + ' sdocuments';
     }
     searchUser();
-
 
 </script>
 

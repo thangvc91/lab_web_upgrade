@@ -2,16 +2,11 @@
 
 <html lang="en">
     <head>
-        {% load static %}
-        <meta charset="UTF-8">
-        <title>SEARCH USER LIST</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
-
-        
+            <meta charset="UTF-8">
+            <title id="title1">SEARCH-USERLIST</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
             <style>
                 td{
@@ -31,34 +26,8 @@
             <div class="clientname">
                 <h3 id = "client_name" ></h3>
             </div>
-            <div class="row">
-                <table id="table_id" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <!-- <th>Name</th>
-                            <th>Client Name</th>
-                            <th>Year</th>
-                            <th>Description</th>
-                            <th>Link Download</th> -->
-                            <th>staff_name</th>
-                            <th>client_name</th>
-                            <th>description</th>
-                            <th>year</th>
-                            <th>client_url</th>
-                        </tr>
-                        <tfoot>
-                            <tr>
-                                <th>staff_name</th>
-                                <th>client_name</th>
-                                <th>description</th>
-                                <th>year</th>
-                                <th>client_url</th>
-                            </tr>
-                        </tfoot>
-                    </thead>
-                    <!-- <tbody id="user_list">
-                    </tbody>
-                    <tfoot>
+            <table class="table">
+                <thead>
                     <tr>
                         <th>Name</th>
                         <th>Client Name</th>
@@ -66,22 +35,18 @@
                         <th>Description</th>
                         <th>Link Download</th>
                     </tr>
-                    </tfoot> -->
-                </table>
-            </div>
-            <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script> -->
-            <!-- <script src="{% static 'js/app.js' %}"></script> -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-            <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+                </thead>
+                <tbody id="user_list">
+                </tbody>
+            </table>
+
         </div>
     </body>
 </html>
 <a href=""></a>
 <script>
-    // let baseUrl = 'http://thangvc91.ydns.eu:8082';
-    let baseUrl = 'http://127.0.0.1:8000';
+    let baseUrl = 'http://thangvc91.ydns.eu:8082';
+    // let baseUrl = 'http://127.0.0.1:8000';
     let userList = [];
     // let password = document.getElementById("pwd").value;
     // console.log(password);
@@ -116,37 +81,16 @@
         let resp = await fetch(url);
         userList = await resp.json();
         console.log(userList);
-        // let html = userList.map(renderRow).join("");
-        // console.log(html);
-        // // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
-        // console.log(pwd)
-        // document.getElementById("user_list").innerHTML=html;
-
-        // document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
-        // document.getElementById("title1").innerHTML = user + ' sdocuments';
-        // return userList
-        $('#table_id').DataTable({
-    // data: userList,
-    data : userList,
-    columns: [
-        { data: 'staff_name' },
-        { data: 'client_name' },
-        { data: 'description' },
-        { data: 'year' },
-        { data: 'client_url' }
-    ],
-
-    "pageLength": 10
-});
-
+        let html = userList.map(renderRow).join("");
+        console.log(html);
+        // document.getElementById("client_name").innerHTML = ' Welcome to' + pwd;
+        console.log(pwd)
+        document.getElementById("user_list").innerHTML=html;
+        document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
+        document.getElementById("title1").innerHTML = user + ' sdocuments';
     }
-    searchUser();
-
-
+    searchUser()
 </script>
-
-
-
 <!-- <script>
     function searchUser(){
         let pwd = document.getElementById("pwd").value;
