@@ -24,3 +24,13 @@ class StaffUrl(models.Model):
     staffurl =models.CharField(max_length=500,null=False)
     year =models.IntegerField(null=True)
     def __str__(self): return self.staffname
+    
+class Bat(models.Model):
+    batpassword = models.CharField(max_length=20, null=False)
+    batuser = models.CharField(max_length=50, null=False)
+    batemail = models.CharField(max_length=50, null=False)
+    batrelationship = models.CharField(max_length=50, null=True)
+    batdob = models.CharField(max_length=50, null=True)
+    batgender = models.CharField(max_length=10, null=True)
+    batid = models.CharField(max_length=20, null=True)
+    def __str__(self): return self.batemail

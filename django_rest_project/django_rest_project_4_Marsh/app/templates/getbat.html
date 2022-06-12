@@ -40,13 +40,20 @@
                             <th>Year</th>
                             <th>Description</th>
                             <th>Link Download</th> -->
-                            <th>staff_name</th>
-                            <th>client_name</th>
-                            <th>description</th>
-                            <th>year</th>
-                            <th>client_url</th>
+                            <!-- <th>batemail</th>
+                            <th>batuser</th>
+                            <th>batrelationship</th>
+                            <th>batdob</th>
+                            <th>batgender</th>
+                            <th>batid</th> -->
+                            <th>email</th>
+                            <th>fullname</th>
+                            <th>relationship</th>
+                            <th>dob</th>
+                            <th>gender</th>
+                            <th>id</th>
                         </tr>
-                        <tfoot>
+                        <!-- {% comment %} <tfoot>
                             <tr>
                                 <th>staff_name</th>
                                 <th>client_name</th>
@@ -54,7 +61,7 @@
                                 <th>year</th>
                                 <th>client_url</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> {% endcomment %} -->
                     </thead>
                     <!-- <tbody id="user_list">
                     </tbody>
@@ -108,11 +115,11 @@
     async function searchUser(){
         // let pwd = document.getElementById("pwd").value;
         var pwd = "{{password}}";
-        var year = "{{year}}";
-        var user = "{{name}}"
-        var clientname = "{{clientname}}";
+        //var year = "{{year}}";
+        var email = "{{email}}"
+        //var clientname = "{{clientname}}";
         //let url = baseUrl + '/api/searchclienturl?password=' + (keyword ?? 'BaoViet') //ham lay gia tri mac dinh cua JS
-        let url = baseUrl + '/api/searchstaff?password=' + pwd + "&year=" + year + "&clientname=" + clientname ;//ham lay gia tri mac dinh cua JS
+        let url = baseUrl + '/api/searchbat?email=' + email + "&password=" + pwd
         let resp = await fetch(url);
         userList = await resp.json();
         console.log(userList);
@@ -129,17 +136,12 @@
     // data: userList,
     data : userList,
     columns: [
-        { data: 'staff_name' },
-        { data: 'client_name' },
-        { data: 'description' },
-        { data: 'year' },
-        { data: 'client_url',
-        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-            // $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>");
-            $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>")
-        }
-    
-    }
+        { data: 'batemail' },
+        { data: 'batuser' },
+        { data: 'batrelationship' },
+        { data: 'batdob' },
+        { data: 'batgender'},
+        { data: 'batid'},
     ],
 
     "pageLength": 10

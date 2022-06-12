@@ -13,5 +13,8 @@ urlpatterns = [
     path('dt',datatable),
     path('doc2html',doc2html),
     path('checkstaff',checkstaff),
-    path('searchstaff',search_staff_url)
+    path('searchstaff',search_staff_url),
+    path('bat',bat),
+    path('searchbat',search_bat),
+    path('forgot',forgot)
 ]

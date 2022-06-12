@@ -192,3 +192,75 @@ def checkstaff(request):
             return render(request, 'getstaff.html',context)
     else:
             return render(request,'posts/staff.html')
+        
+#~~~~~~~~~~~~~BAT
+@csrf_exempt
+def bat(request):
+    if request.method == 'POST':
+        pwd = request.POST.get('password') 
+        # pwds = ClientUrl.objects.filter(clientname = pwd)
+        email = request.POST.get('email')
+        pwds = Bat.objects.filter(batpassword = pwd, batemail = email)
+        clientname = pwds.first()
+        print(pwds)
+        print(f'ket qua dau tien {clientname}')
+        if not pwds:
+            return HttpResponse({'error': 'missing info'}, status=500)
+            # print(pwds)
+        # if pwd == pwds.clientname:
+        #     print(pwd)
+        #     print("YES")
+        # if pwd in pwds:
+        #     print(request.POST.get('password'))
+        #     # messages.add_message(request, messages.INFO, 'success')
+        #     messages.info(request, 'success')
+        else:           
+            context = {
+                    'password':pwd,
+                    'email':email
+                }
+            return render(request, 'getbat.html',context)
+    else:
+            return render(request,'posts/bat.html')
+        
+#~~~~~~~~~~~SEARCH BAT~~~~~~~~~~~~~~
+
+def search_bat(request):
+    params = request.GET 
+    password = params.get('password')
+    email = params.get('email')
+    #year = params.get('year')
+    clienturl = Bat.objects.filter(
+        batpassword=password,
+        batemail = email,
+    )
+    print("hello")
+    result = []
+    for u in clienturl:
+        result.append({
+            'batuser':u.batuser,
+            'batemail':u.batemail,
+            'batrelationship':u.batrelationship,
+            'batdob':u.batdob,
+            'batgender':u.batgender,
+            'batid':u.batid
+        })
+    return HttpResponse(json.dumps(result))   
+@csrf_exempt
+def forgot(request):
+    if request.method == 'POST':
+        # pwds = ClientUrl.objects.filter(clientname = pwd)
+        email = request.POST.get('email')    
+        pwds = Bat.objects.filter(batemail = email).first()
+        print(pwds)    
+        if not pwds:
+            return HttpResponse({'error': 'email is incorrect'}, status=500)        
+        else:
+            sendpass(pwds.batpassword)
+            return HttpResponse({f'{pwds.batpassword}': f'{pwds.batpassword}'}, status=500) 
+        
+    else:       
+        return render(request,'posts/forgot.html')
+def sendpass(pwd):
+    #TODO  : lookup pass from db -> open outlook -> send pwd to user
+    print(pwd)
