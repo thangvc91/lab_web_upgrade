@@ -38,7 +38,7 @@
                          <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
                        </div>
                        <div class="form-group">
-                        <button class="btn btn--radius btn--green" type="button" onclick="location.href='http://127.0.0.1:8000/api/bat';">Forgot password</button>
+                        <button class="btn btn--radius btn--green" type="button" onclick="location.href='http://thangvc91.ydns.eu:8082/api/forgot;">Forgot password</button>
                       </div>                       
                        <input type="hidden" class="hide" name="token" id="token" value=""> 
                      </form>
@@ -57,7 +57,7 @@
   let info = "{{info}}";
   if(info.length>30){
     alert(info);
-    document.location.href="http://127.0.0.1:8000/api/bat";
+    document.location.href="http://thangvc91.ydns.eu:8082/api/bat";
   }
   else if(info.length < 20 && info.length > 10){
     alert(info)
