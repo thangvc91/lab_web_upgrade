@@ -8,6 +8,8 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.db.models import Q
+import win32com.client as win32
+from .outlook import *
 import json
 # @api_view(['GET', 'POST'])
 def hello(request):    
@@ -246,6 +248,27 @@ def search_bat(request):
             'batid':u.batid
         })
     return HttpResponse(json.dumps(result))   
+
+#DEFINE email password to user 
+import pythoncom
+import win32com.client as win32
+def sendemail(email, password):
+    template = '''
+        <p>Hi <strong>Useremail</strong>,</p>
+        <p><strong>You password is <span style="color: rgb(224, 62, 45);">password1</span></strong></p>
+        <p>&nbsp;</p>
+        <p><strong><span style="color: rgb(224, 62, 45);">Thank you for using our services</span></strong></p>
+    '''
+    template = template.replace('Useremail',email)
+    template = template.replace('password1', password)
+    outlook = win32.Dispatch('outlook.application' ,pythoncom.CoInitialize())
+    mail = outlook.CreateItem(0)
+    mail.To = email
+    mail.Subject = 'Im your password assistant'
+    # mail.Body = 'Message body'
+    mail.HTMLBody = template #this field is optional
+    mail.Send() 
+#DEFINE forgot password function
 @csrf_exempt
 def forgot(request):
     if request.method == 'POST':
@@ -256,11 +279,10 @@ def forgot(request):
         if not pwds:
             return HttpResponse({'error': 'email is incorrect'}, status=500)        
         else:
-            sendpass(pwds.batpassword)
-            return HttpResponse({f'{pwds.batpassword}': f'{pwds.batpassword}'}, status=500) 
-        
+            # return HttpResponse({f'{pwds.batpassword}': f'{pwds.batpassword}'}, status=500) 
+            sendemail(email,pwds.batpassword)
+            return render(request,'posts/bat.html' )       
     else:       
         return render(request,'posts/forgot.html')
-def sendpass(pwd):
-    #TODO  : lookup pass from db -> open outlook -> send pwd to user
-    print(pwd)
+
+
