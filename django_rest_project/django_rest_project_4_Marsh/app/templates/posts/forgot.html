@@ -53,5 +53,14 @@
 </body>
 </html>
 
+<script>
+  let info = "{{info}}";
+  if(info.length>30){
+    alert(info);
+    document.location.href="http://127.0.0.1:8000/api/bat";
+  }
+  else if(info.length < 20 && info.length > 10){
+    alert(info)
+  }
 
- 
+</script>
