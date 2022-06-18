@@ -10,10 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-        <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-        <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
         
 
             <style>
@@ -83,8 +80,8 @@
 </html>
 <a href=""></a>
 <script>
-     let baseUrl = 'http://thangvc91.ydns.eu:8082'; 
-     //let baseUrl = 'http://127.0.0.1:8000'; 
+    let baseUrl = 'http://thangvc91.ydns.eu:8082'; 
+    // let baseUrl = 'http://127.0.0.1:8000';
     let userList = [];
     // let password = document.getElementById("pwd").value;
     // console.log(password);
@@ -128,53 +125,26 @@
         // document.getElementById("client_name").innerHTML = ' Welcome Back ' + user;
         // document.getElementById("title1").innerHTML = user + ' sdocuments';
         // return userList
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-$(document).ready(function () {
-    // Setup - add a text input to each footer cell
-    $('#table_id thead th').each(function () {
-        var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-    });
- 
-    // 
-    $('#table_id').DataTable({
-        // data: userList,
-        data : userList,
-        columns: [
-            { data: 'staff_name' },
-            { data: 'client_name' },
-            { data: 'description' },
-            { data: 'year' },
-            { data: 'client_url',
-            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                // $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>");
-                $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>")
-            }
-        
-        }
-        ],
-//~~~~~~~~~~~~~~~~~
-initComplete: function () {
-    // Apply the search
-    this.api()
-        .columns()
-        .every(function () {
-            var that = this;
-
-            //$('input', this.footer()).on('keyup change clear', function () {
-            $('input', this.header()).on('keyup change clear', function () {
-                if (that.search() !== this.value) {
-                    that.search(this.value).draw();
+        $('#table_id').DataTable({
+            // data: userList,
+            data : userList,
+            columns: [
+                { data: 'staff_name' },
+                { data: 'client_name' },
+                { data: 'description' },
+                { data: 'year' },
+                { data: 'client_url',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    // $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>");
+                    $(nTd).html("<a href='"+oData.client_url+"'>"+oData.client_url+"</a>")
                 }
-            });
+            
+            }
+            ],
+        
+            "pageLength": 10
         });
-},
-//~~~~~~~~~~~~~~~~
-        "pageLength": 10
-    });
-    // DataTable
-});
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     }
     searchUser();
 
