@@ -295,3 +295,39 @@ def forgot(request):
         return render(request,'posts/forgot.html')
 
 
+#~~~~~~~~~~~add new record to DB 
+@csrf_exempt
+def addbat(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        #print(email)
+        pwd = request.POST.get('password')
+        tempbat = Bat.objects.filter(
+            batemail = email,
+            batpassword = pwd
+        )
+        tempbat = tempbat.first()
+        print(tempbat.batemail)
+        print(tempbat.batpassword)
+        if not tempbat:
+            return render(request,'addbat.html') 
+        else:
+            post = Bat()
+            post.batpassword = request.POST.get('password')
+            post.batuser = request.POST.get('fullname')
+            post.batemail = request.POST.get('email')
+            post.batrelationship = request.POST.get('relationship')
+            post.batdob = request.POST.get('dob')
+            post.batgender = request.POST.get('gender') 
+            post.batid = request.POST.get('id') 
+            print(post.batid)
+            post.save() 
+            context = {
+                    'password':pwd,
+                    'email':email
+                }
+            return render(request, 'getbat.html',context)
+    return render(request,'addbat.html')
+
+
+

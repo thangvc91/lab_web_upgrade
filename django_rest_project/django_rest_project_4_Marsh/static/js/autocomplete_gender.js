@@ -98,5 +98,5 @@ document.addEventListener("click", function (e) {
 });
 
 }
-autocomplete(document.getElementById("myInput"), countries);
+// autocomplete(document.getElementById("myInput"), countries);
 autocomplete(document.getElementById("myInput"), genders);

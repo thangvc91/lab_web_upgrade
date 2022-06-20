@@ -16,5 +16,6 @@ urlpatterns = [
     path('searchstaff',search_staff_url),
     path('bat',bat),
     path('searchbat',search_bat),
-    path('forgot',forgot)
+    path('forgot',forgot),
+    path('addbat',addbat),
 ]

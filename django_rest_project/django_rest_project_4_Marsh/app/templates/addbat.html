@@ -43,6 +43,37 @@
         font-size: medium;
         font-style: italic;
     }
+    .autocomplete {
+  /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+    }
+    .autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+    .autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+    .autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+    .autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
     </style>
 </head>
 
@@ -57,7 +88,7 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h3 class="title">chương trình bảo hiểm của Mercer Marsh Benefits / BAO VIET dành cho nhân viên của BAT Việt Nam</h3>
+                    <h3 class="title">Add them </h3>
                      
                     <form method="POST">
                         <div class="input-group">
@@ -66,11 +97,31 @@
                         <div class="input-group">
                             <input class="input--style-1" type="password" placeholder="password" name="password">
                         </div>
-                        <div class="p-t-20">
-                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        <div class="input-group">
+                            <input class="input--style-1" type="user" placeholder="fullname" name="fullname">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="relationship" placeholder="relationship" name="relationship">
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="DOB" name="dob">
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <!-- <input class="input--style-1" type="text" placeholder="clientname" name="clientname"> -->
+                            <div class="autocomplete" style="width:300px;">
+                                <input id="myInput" type="text" name="gender" placeholder="gender">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="ID" placeholder="ID" name="id">
                         </div>
                         <div class="p-t-20">
-                            <button class="btn btn--radius btn--green" type="button" onclick="location.href='http://thangvc91.ydns.eu:8082/api/forgot';">Forgot password</button>
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -83,11 +134,11 @@
     <!-- Vendor JS-->
     <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
     <script src="{% static 'vendor/datepicker/moment.min.js' %}"></script>
-     <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
 
     <!-- Main JS-->
     <script src="{% static 'js/global.js' %}"></script>
-
+    <script src="{% static 'js/autocomplete_gender.js' %}"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
